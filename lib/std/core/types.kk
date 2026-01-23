@@ -346,10 +346,14 @@ pub inline extern set( ^ref : ref<h,a>, assigned : a) : write<h> ()
   js inline "((#1).value = #2)"
 
 // Read the value of a reference.
-pub inline extern ref/(!)<h,a,e>( ref : ref<h,a>, ?hdiv : hdiv<h,a,e>) : <read<h>|e> a
+pub inline extern get<h,a,e>( ref : ref<h,a>, ?hdiv : hdiv<h,a,e>) : <read<h>|e> a
   c  inline "kk_ref_get(#1,kk_context())"
   cs inline "#1.Value"
   js inline "#1.value"
+
+// Read the value of a reference. Deprecated alias for `get`.
+pub fun ref/(!)<h,a,e>( ref : ref<h,a>, ?hdiv : hdiv<h,a,e>) : <read<h>|e> a
+  get(ref)
 
 // Modify the value of a reference.
 // This is especially useful when the reference contains a vector, because
